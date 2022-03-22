@@ -14,8 +14,8 @@ import {
 } from "./SortingContainer.styles";
 
 const DEFAULT_BG = "#ffffff";
-const SELECTED_BG = "#d37591";
-const SWAPPED_BG = "#6bfbce";
+const SELECTED_BG = "#6defff";
+const SWAPPED_BG = "#68fbd0";
 
 const SortingContainer = () => {
   const [array, setArray] = useState([]);
@@ -55,6 +55,7 @@ const SortingContainer = () => {
           colorizeComparison(i, SELECTED_BG, sortingDelay);
         } else if (status === "highlighted") {
           const [i, selected] = comparison;
+          colorizeComparison(i, selected ? SELECTED_BG : SWAPPED_BG, 1);
         } else if (status === "swapped") {
           const [i, j, oldValue, newValue] = comparison;
           colorizeComparison(j, SWAPPED_BG, sortingDelay);
