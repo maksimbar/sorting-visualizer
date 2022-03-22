@@ -16,7 +16,7 @@ export const Wrapper = styled.div`
 export const ArrayItem = styled.div`
   /* transition: height 70ms ease-out; */
   letter-spacing: 0.15em;
-  width: 10vw;
+  width: 5vw;
   background-color: white;
   display: flex;
   font-weight: 600;
@@ -58,10 +58,10 @@ export const Toolbar = styled.nav`
   width: 100vw;
   height: 60px;
   display: flex;
-  background-color: #1c5a7e;
+  background-color: #efedff;
 `;
 export const Span = styled.span`
-  color: white;
+  color: black;
   font-size: 1em;
 `;
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import BubbleSort from "../../algorithms/BubbleSort";
+import QuickSort from "../../algorithms/QuickSort";
 import {
   ArrayContainer,
   ArrayItem,
@@ -13,8 +14,8 @@ import {
 } from "./SortingContainer.styles";
 
 const DEFAULT_BG = "#ffffff";
-const SELECTED_BG = "#6fd8c4";
-const SWAPPED_BG = "#d97eab";
+const SELECTED_BG = "#d37591";
+const SWAPPED_BG = "#6bfbce";
 
 const SortingContainer = () => {
   const [array, setArray] = useState([]);
@@ -30,8 +31,8 @@ const SortingContainer = () => {
     setArray(tempArray);
   };
 
-  const sortingSpeed = arraySize < 35 ? 80 : 3000 / arraySize;
-  const sortingDelay = arraySize < 35 ? 2 : 1.75;
+  const sortingSpeed = arraySize < 35 ? 80 : 4000 / arraySize;
+  const sortingDelay = arraySize < 35 ? 2 : 1;
   const arrayBar = document.getElementsByClassName("array-item");
 
   const colorizeBar = (index, color) =>
@@ -52,6 +53,8 @@ const SortingContainer = () => {
           const [i, j] = comparison;
           colorizeComparison(j, SWAPPED_BG, sortingDelay);
           colorizeComparison(i, SELECTED_BG, sortingDelay);
+        } else if (status === "highlighted") {
+          const [i, selected] = comparison;
         } else if (status === "swapped") {
           const [i, j, oldValue, newValue] = comparison;
           colorizeComparison(j, SWAPPED_BG, sortingDelay);
@@ -68,30 +71,31 @@ const SortingContainer = () => {
   };
 
   const vizualizeBubbleSort = () => vizualizeSorting(BubbleSort(array));
-
+  const vizualizeQuickSort = () => vizualizeSorting(QuickSort(array));
   return (
     <Wrapper>
       <Toolbar>
+        <Button onClick={randomizeArray}>
+          <Icon className="fa-solid fa-arrow-rotate-right" /> Randomize
+        </Button>
         <SliderWrapper>
           <Span>Change speed & size</Span>
           <Slider
             type="range"
             min="30"
-            max="150"
+            max="170"
             onChange={(e) => setArraySize(e.target.value)}
           />
         </SliderWrapper>
         <Button onClick={vizualizeBubbleSort}>Bubble Sort</Button>
-        <Button onClick={randomizeArray}>
-          <Icon className="fa-solid fa-arrow-rotate-right" /> Randomize
-        </Button>
+        <Button onClick={vizualizeQuickSort}>Quick Sort</Button>
       </Toolbar>
       <ArrayContainer>
         {array.map((value) => (
           <ArrayItem
             className="array-item"
             style={{
-              height: value / 8 + "vw",
+              height: value / 7 + "vw",
             }}
           >
             {arraySize <= 35 ? value : null}

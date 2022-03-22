@@ -2,7 +2,7 @@ import SortingContainer from "./components/SortingContainer/SortingContainer";
 import styled from "styled-components";
 
 const Backdrop = styled.div`
-background-color: #1A102B;
+background-color: #101534;
 height: 100vh;
 width:100vw;
 `
