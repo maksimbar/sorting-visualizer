@@ -1,20 +1,21 @@
-const partition = (arrCopy, left, right, transitions) => {
-  let pivot = arrCopy[Math.floor((right + left) / 2)], //middle element
+import Swap from "../helpers/Swap";
+
+const partition = (auxArr, left, right, transitions) => {
+  let pivot = auxArr[Math.floor((right + left) / 2)], //middle element
     i = left, //left pointer
     j = right; //right pointer
   while (i <= j) {
-    while (arrCopy[i] < pivot) {
-      transitions.push([[i, true], "highlighted"]);
+    while (auxArr[i] < pivot) {
       i++;
+      transitions.push([[i, true], "highlighted"]);
     }
-    while (arrCopy[j] > pivot) {
-      transitions.push([[j, false], "highlighted"]);
+    while (auxArr[j] > pivot) {
       j--;
+      transitions.push([[j, false], "highlighted"]);
     }
-    transitions.push([[i, j], "compared"]);
     if (i <= j) {
-      transitions.push([[i, j, arrCopy[j], arrCopy[i]], "swapped"]);
-      [arrCopy[i], arrCopy[j]] = [arrCopy[j], arrCopy[i]];
+      transitions.push([[i, j, auxArr[j], auxArr[i]], "swapped"]);
+      Swap(i, j, auxArr);
       i++;
       j--;
     }
@@ -22,26 +23,26 @@ const partition = (arrCopy, left, right, transitions) => {
   return i;
 };
 
-const QuickSortCalls = (arr, left, right, transitions) => {
+const QuickSortCalls = (mainArr, left, right, transitions) => {
   let index;
-  if (arr.length > 1) {
-    index = partition(arr, left, right, transitions); //index returned from partition
+  if (mainArr.length > 1) {
+    index = partition(mainArr, left, right, transitions); //index returned from partition
     if (left < index - 1) {
       //more elements on the left side of the pivot
-      QuickSortCalls(arr, left, index - 1, transitions);
+      QuickSortCalls(mainArr, left, index - 1, transitions);
     }
     if (index < right) {
       //more elements on the right side of the pivot
-      QuickSortCalls(arr, index, right, transitions);
+      QuickSortCalls(mainArr, index, right, transitions);
     }
   }
   return transitions;
 };
 
-const QuickSort = (arr) => {
-  const arrCopy = [...arr];
+const QuickSort = (mainArr) => {
+  const auxArr = [...mainArr];
   const transitions = [];
-  QuickSortCalls(arrCopy, 0, arrCopy.length - 1, transitions);
+  QuickSortCalls(auxArr, 0, auxArr.length - 1, transitions);
   return transitions;
 };
 
