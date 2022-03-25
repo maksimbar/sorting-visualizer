@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import BubbleSort from "./algorithms/BubbleSort";
 import QuickSort from "./algorithms/QuickSort";
+import HeapSort from "./algorithms/HeapSort";
 import { Backdrop, ArrayContainer, ArrayBar, Wrapper } from "./App.styles";
 import Toolbar from "./components/Toolbar/Toolbar";
 import Colors from "./Colors";
@@ -25,7 +26,7 @@ const App = () => {
     setArr(tempArray);
   };
 
-  const sortingSpeed = 2000 / arrLen;
+  const sortingSpeed = 4000 / arrLen;
   const arrayBar = document.getElementsByClassName("array-bar");
   const barHeight = (value) => value / 6 + "vw";
 
@@ -74,6 +75,9 @@ const App = () => {
         break;
       case "Quick Sort":
         vizualizeSorting(QuickSort(arr));
+        break;
+      case "Heap Sort":
+        vizualizeSorting(HeapSort(arr));
         break;
     }
   };
