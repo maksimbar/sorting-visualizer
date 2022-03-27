@@ -6,10 +6,10 @@ const BubbleSort = (mainArr) => {
   let length = mainArr.length;
   for (let i = 0; i < length; i++) {
     for (let j = 0; j < length - i - 1; j++) {
-      transitions.push([[j, j + 1], "compared"]);
+      transitions.push([[j, j + 1], "compared", 2]);
       if (auxArr[j] > auxArr[j + 1]) {
         transitions.pop();
-        transitions.push([[j, j + 1, auxArr[j + 1], auxArr[j]], "swapped"]);
+        transitions.push([[j, j + 1, auxArr[j + 1], auxArr[j]], "swapped", 2]);
         Swap(j, j + 1, auxArr);
       }
     }

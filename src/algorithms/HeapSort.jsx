@@ -13,9 +13,9 @@ const maxHeapify = (auxArr, length, i, transitions) => {
     largest = r;
   }
 
-  if (largest != i) {
+  if (largest !== i) {
     Swap(i, largest, auxArr);
-    transitions.push([[i, largest, auxArr[i], auxArr[largest]], "swapped"]);
+    transitions.push([[i, largest, auxArr[i], auxArr[largest]], "swapped", 2]);
     maxHeapify(auxArr, length, largest, transitions);
   }
 };
@@ -30,7 +30,7 @@ const HeapSort = (mainArr) => {
 
   for (let i = length - 1; i >= 0; i--) {
     Swap(0, i, auxArr);
-    transitions.push([[0, i, auxArr[0], auxArr[i]], "swapped"]);
+    transitions.push([[0, i, auxArr[0], auxArr[i]], "swapped", 2]);
     maxHeapify(auxArr, i, 0, transitions);
   }
   return transitions;

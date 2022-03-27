@@ -1,20 +1,20 @@
 import Swap from "../helpers/Swap";
 
 const partition = (auxArr, left, right, transitions) => {
-  let pivot = auxArr[Math.floor((right + left) / 2)], //middle element
-    i = left, //left pointer
-    j = right; //right pointer
+  let pivot = auxArr[Math.floor((right + left) / 2)],
+    i = left,
+    j = right;
   while (i <= j) {
     while (auxArr[i] < pivot) {
       i++;
-      transitions.push([[i, true], "highlighted"]);
+      transitions.push([[i, true], "highlighted", 1]);
     }
     while (auxArr[j] > pivot) {
       j--;
-      transitions.push([[j, false], "highlighted"]);
+      transitions.push([[j, false], "highlighted", 1]);
     }
     if (i <= j) {
-      transitions.push([[i, j, auxArr[j], auxArr[i]], "swapped"]);
+      transitions.push([[i, j, auxArr[j], auxArr[i]], "swapped", 1]);
       Swap(i, j, auxArr);
       i++;
       j--;
@@ -26,13 +26,11 @@ const partition = (auxArr, left, right, transitions) => {
 const QuickSortCalls = (mainArr, left, right, transitions) => {
   let index;
   if (mainArr.length > 1) {
-    index = partition(mainArr, left, right, transitions); //index returned from partition
+    index = partition(mainArr, left, right, transitions);
     if (left < index - 1) {
-      //more elements on the left side of the pivot
       QuickSortCalls(mainArr, left, index - 1, transitions);
     }
     if (index < right) {
-      //more elements on the right side of the pivot
       QuickSortCalls(mainArr, index, right, transitions);
     }
   }

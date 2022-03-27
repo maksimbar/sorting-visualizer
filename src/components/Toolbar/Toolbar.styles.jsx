@@ -23,7 +23,6 @@ export const Button = styled.button`
   }
   &:active {
     box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
-    // transition: box-shadow 0.3s ease-in-out;
   }
   &:disabled {
     opacity: 0.8;
@@ -36,7 +35,7 @@ export const Wrapper = styled.div`
   justify-content: center;
   gap: 40px;
   align-items: center;
-  width: 100vw;
+  width: 100%;
   height: 60px;
   display: flex;
   background-color: ${Colors.secondary};
@@ -75,12 +74,10 @@ export const Slider = styled.input`
     border-radius: 10px;
   }
   &::-webkit-slider-thumb {
-    box-shadow: 1px 1px 1px ${Colors.alt}, 0px 0px 1px ${Colors.alt};
     border: 1px solid ${Colors.alt};
     height: 12px;
     width: 12px;
     border-radius: 100%;
-    background: #ffffff;
     background: #ffffff;
     cursor: pointer;
     -webkit-appearance: none;

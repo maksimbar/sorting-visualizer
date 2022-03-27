@@ -1,19 +1,25 @@
 import React, { useState, useEffect } from "react";
 import BubbleSort from "./algorithms/BubbleSort";
 import QuickSort from "./algorithms/QuickSort";
+import LomutoQuickSort from "./algorithms/LomutoQuickSort";
 import HeapSort from "./algorithms/HeapSort";
 import { Backdrop, ArrayContainer, ArrayBar, Wrapper } from "./App.styles";
 import Toolbar from "./components/Toolbar/Toolbar";
 import Colors from "./Colors";
 
-const algorithms = ["Bubble Sort", "Quick Sort", "Heap Sort"];
+const algorithms = [
+  "Bubble Sort",
+  "Heap Sort",
+  "Quick Sort (LR)",
+  "Quick Sort (L)",
+];
 
 const App = () => {
   const [algo, setAlgo] = useState("Bubble Sort");
   const [arr, setArr] = useState([]);
   const [sorting, setSorting] = useState(false);
   const [sorted, setSorted] = useState(false);
-  const [arrLen, setArrLen] = useState(30);
+  const [arrLen, setArrLen] = useState(200);
   useEffect(() => {
     ShuffleArray();
   }, [arrLen]);
@@ -26,8 +32,9 @@ const App = () => {
     setArr(tempArray);
   };
 
-  const sortingSpeed = 4000 / arrLen;
   const arrayBar = document.getElementsByClassName("array-bar");
+  const sortingSpeed = 3000 / arrLen;
+
   const barHeight = (value) => value / 6 + "vw";
 
   const colorizeBars = (index, color, delay) => {
@@ -40,21 +47,21 @@ const App = () => {
   const vizualizeSorting = (transitions) => {
     setSorting(true);
     let comparisons = 0;
-    for (let [comparison, status] of transitions) {
+    for (let [comparison, status, delay] of transitions) {
       setTimeout(() => {
         if (status === "compared") {
           const [i, j] = comparison;
-          colorizeBars(j, Colors.primary, 2);
-          colorizeBars(i, Colors.secondary, 2);
+          colorizeBars(j, Colors.primary, delay);
+          colorizeBars(i, Colors.secondary, delay);
         } else if (status === "highlighted") {
           const [i, selected] = comparison;
-          colorizeBars(i, selected ? Colors.secondary : Colors.primary, 1);
+          colorizeBars(i, selected ? Colors.secondary : Colors.primary, delay);
         } else if (status === "swapped") {
-          const [i, j, oldValue, newValue] = comparison;
-          colorizeBars(j, Colors.primary, 2);
-          colorizeBars(i, Colors.secondary, 2);
-          arrayBar[i].style.height = barHeight(oldValue);
-          arrayBar[j].style.height = barHeight(newValue);
+          const [i, j, newValue, oldValue] = comparison;
+          colorizeBars(j, Colors.primary, delay);
+          colorizeBars(i, Colors.secondary, delay);
+          arrayBar[i].style.height = barHeight(newValue);
+          arrayBar[j].style.height = barHeight(oldValue);
         }
       }, sortingSpeed * comparisons++);
     }
@@ -68,16 +75,20 @@ const App = () => {
   const handleLength = (event) => setArrLen(event.target.value);
 
   const currentAlgo = (algo) => {
-    // eslint-disable-next-line default-case
     switch (algo) {
       case "Bubble Sort":
         vizualizeSorting(BubbleSort(arr));
         break;
-      case "Quick Sort":
-        vizualizeSorting(QuickSort(arr));
-        break;
       case "Heap Sort":
         vizualizeSorting(HeapSort(arr));
+        break;
+      case "Quick Sort (LR)":
+        vizualizeSorting(QuickSort(arr));
+        break;
+      case "Quick Sort (L)":
+        vizualizeSorting(LomutoQuickSort(arr));
+        break;
+      default:
         break;
     }
   };
@@ -98,8 +109,9 @@ const App = () => {
           sorted={sorted}
         />
         <ArrayContainer>
-          {arr.map((value) => (
+          {arr.map((value, i) => (
             <ArrayBar
+              key={i}
               className="array-bar"
               style={{ height: barHeight(value) }}
             />

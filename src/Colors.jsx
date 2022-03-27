@@ -1,6 +1,6 @@
 const Colors = {
   default: "#ffffff",
-  primary: "#dca11d",
+  primary: "#df6e8b",
   secondary: "#6d93d1",
   alt: "#01345b",
 };

@@ -24,11 +24,13 @@ const Toolbar = ({
     <Wrapper>
       <StyledSelect
         onChange={handleAlgo}
-        style={{ width: 120 }}
+        style={{ width: 140 }}
         defaultValue={algo}
       >
-        {algorithms.map((selectedAlgo) => (
-          <StyledOption value={selectedAlgo}>{selectedAlgo}</StyledOption>
+        {algorithms.map((selectedAlgo, i) => (
+          <StyledOption key={i} value={selectedAlgo}>
+            {selectedAlgo}
+          </StyledOption>
         ))}
       </StyledSelect>
       <SliderWrapper>
