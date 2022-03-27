@@ -9,7 +9,6 @@ export const Backdrop = styled.div`
 `;
 
 export const ArrayContainer = styled.div`
-  gap: 0.2vw;
   display: flex;
   align-items: flex-end;
   margin-top: auto;

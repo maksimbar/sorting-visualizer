@@ -33,9 +33,9 @@ const App = () => {
   };
 
   const arrayBar = document.getElementsByClassName("array-bar");
-  const sortingSpeed = 3000 / arrLen;
+  const sortingSpeed = 4000 / arrLen;
 
-  const barHeight = (value) => value / 6 + "vw";
+  const barHeight = (value) => value / 3 + "vh";
 
   const colorizeBars = (index, color, delay) => {
     arrayBar[index].style.backgroundColor = color;
@@ -108,7 +108,7 @@ const App = () => {
           sorting={sorting}
           sorted={sorted}
         />
-        <ArrayContainer>
+        <ArrayContainer style={{ gap: 30 / arrLen + "vw" }}>
           {arr.map((value, i) => (
             <ArrayBar
               key={i}
