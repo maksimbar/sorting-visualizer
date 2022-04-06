@@ -1,39 +1,43 @@
 import Swap from "../helpers/Swap";
+import Highlight from "../helpers/Highlight";
 
-const maxHeapify = (auxArr, length, i, transitions) => {
+const maxHeapify = async (data, length, i, setData) => {
   let largest = i;
   let l = 2 * i + 1;
   let r = 2 * i + 2;
 
-  if (l < length && auxArr[l] > auxArr[largest]) {
+  if (l < length && data[l].value > data[largest].value) {
     largest = l;
   }
 
-  if (r < length && auxArr[r] > auxArr[largest]) {
+  if (r < length && data[r].value > data[largest].value) {
     largest = r;
   }
 
   if (largest !== i) {
-    Swap(i, largest, auxArr);
-    transitions.push([[i, largest, auxArr[i], auxArr[largest]], "swapped", 2]);
-    maxHeapify(auxArr, length, largest, transitions);
+    await Highlight({
+      nodes: [largest, i],
+      data: data,
+      setData: setData,
+    });
+    Swap(i, largest, data);
+    setData(data);
+    await maxHeapify(data, length, largest, setData);
   }
 };
 
-const HeapSort = (mainArr) => {
-  const auxArr = [...mainArr];
-  const transitions = [];
-  let length = auxArr.length;
+const HeapSort = async ({ data, setData }) => {
+  let length = data.length;
   for (let i = parseInt(length / 2 - 1); i >= 0; i--) {
-    maxHeapify(auxArr, length, i, transitions);
+    await maxHeapify(data, length, i, setData);
   }
 
   for (let i = length - 1; i >= 0; i--) {
-    Swap(0, i, auxArr);
-    transitions.push([[0, i, auxArr[0], auxArr[i]], "swapped", 2]);
-    maxHeapify(auxArr, i, 0, transitions);
+    await Highlight({ nodes: [0, i], data: data, setData: setData });
+    Swap(0, i, data);
+    setData(data);
+    await maxHeapify(data, i, 0, setData);
   }
-  return transitions;
 };
 
 export default HeapSort;

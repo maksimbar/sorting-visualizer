@@ -1,47 +1,45 @@
 import Swap from "../helpers/Swap";
+import Highlight from "../helpers/Highlight";
 
-const partition = (auxArr, left, right, transitions) => {
-  let pivot = auxArr[Math.floor((right + left) / 2)],
+const partition = async (data, left, right, setData) => {
+  let pivot = data[Math.floor((right + left) / 2)].value,
     i = left,
     j = right;
   while (i <= j) {
-    while (auxArr[i] < pivot) {
+    while (data[i].value < pivot) {
+      await Highlight({ nodes: [j, i], data: data, setData: setData });
       i++;
-      transitions.push([[i, true], "highlighted", 1]);
     }
-    while (auxArr[j] > pivot) {
+    while (data[j].value > pivot) {
+      await Highlight({ nodes: [j, i], data: data, setData: setData });
       j--;
-      transitions.push([[j, false], "highlighted", 1]);
     }
+    await Highlight({ nodes: [j, i], data: data, setData: setData });
     if (i <= j) {
-      transitions.push([[i, j, auxArr[j], auxArr[i]], "swapped", 1]);
-      Swap(i, j, auxArr);
+      Swap(i, j, data);
       i++;
       j--;
     }
+    setData(data);
   }
   return i;
 };
 
-const QuickSortCalls = (mainArr, left, right, transitions) => {
+const quickSortHelper = async (data, left, right, setData) => {
   let index;
-  if (mainArr.length > 1) {
-    index = partition(mainArr, left, right, transitions);
+  if (data.length > 1) {
+    index = await partition(data, left, right, setData);
     if (left < index - 1) {
-      QuickSortCalls(mainArr, left, index - 1, transitions);
+      await quickSortHelper(data, left, index - 1, setData);
     }
     if (index < right) {
-      QuickSortCalls(mainArr, index, right, transitions);
+      await quickSortHelper(data, index, right, setData);
     }
   }
-  return transitions;
 };
 
-const QuickSort = (mainArr) => {
-  const auxArr = [...mainArr];
-  const transitions = [];
-  QuickSortCalls(auxArr, 0, auxArr.length - 1, transitions);
-  return transitions;
+const QuickSort = async ({ data, setData }) => {
+  await quickSortHelper(data, 0, data.length - 1, setData);
 };
 
 export default QuickSort;
