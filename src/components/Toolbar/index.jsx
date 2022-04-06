@@ -6,48 +6,51 @@ import {
   Span,
   Icon,
   Slider,
-} from "./Toolbar.styles";
-import { StyledSelect, StyledOption } from "./Select.styles";
+  StyledSelect,
+  StyledOption,
+} from "./styles";
 
 const Toolbar = ({
-  algo,
-  len,
-  handleAlgo,
-  handleLength,
-  handleShuffle,
-  currentAlgo,
   algorithms,
+  currentAlgo,
+  len,
+  visualizeSorting,
+  handleLength,
+  handleAlgo,
+  handleShuffle,
   sorting,
   sorted,
 }) => {
   return (
     <Wrapper>
-      <StyledSelect
-        onChange={handleAlgo}
-        style={{ width: 140 }}
-        defaultValue={algo}
-      >
-        {algorithms.map((selectedAlgo, i) => (
-          <StyledOption key={i} value={selectedAlgo}>
-            {selectedAlgo}
+      <StyledSelect onChange={handleAlgo} defaultValue={algorithms[0].name}>
+        {algorithms.map((currentAlgo, index) => (
+          <StyledOption key={index} value={index}>
+            {currentAlgo.name}
           </StyledOption>
         ))}
       </StyledSelect>
+
       <SliderWrapper>
-        <Span>Change speed & size</Span>
+        <Span>Change size</Span>
         <Slider
           type="range"
           min="50"
-          max="200"
+          max="250"
           onChange={handleLength}
           value={len}
           disabled={sorting}
         />
       </SliderWrapper>
-      <Button onClick={handleShuffle} disabled={sorting}>
+
+      <Button onClick={() => handleShuffle()} disabled={sorting}>
         <Icon className="fa-solid fa-arrow-rotate-right" /> Randomize
       </Button>
-      <Button onClick={() => currentAlgo(algo)} disabled={sorting || sorted}>
+
+      <Button
+        onClick={() => visualizeSorting(currentAlgo)}
+        disabled={sorting || sorted}
+      >
         <Icon className="fa-solid fa-play" />
         Start
       </Button>

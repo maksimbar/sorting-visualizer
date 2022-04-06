@@ -1,5 +1,8 @@
 import styled from "styled-components";
-import Colors from "../../Colors";
+import Colors from "../../helpers/Colors";
+import { Select } from "antd";
+import "antd/dist/antd.css";
+const { Option } = Select;
 
 export const Button = styled.button`
   display: flex;
@@ -39,12 +42,16 @@ export const Wrapper = styled.div`
   height: 60px;
   display: flex;
   background-color: ${Colors.secondary};
+  -webkit-box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 `;
 
 export const Span = styled.span`
   color: ${Colors.default};
   font-size: 0.9em;
   font-weight: 600;
+  letter-spacing: 0.13em;
 `;
 
 export const SliderWrapper = styled.div`
@@ -104,3 +111,32 @@ export const Slider = styled.input`
 export const Icon = styled.i`
   color: white;
 `;
+
+/*
+Certain styles are flagged as !important
+since we're overriding default antd properties
+*/
+
+export const StyledSelect = styled(Select)`
+  .ant-select-selector {
+    background-color: #01345b !important;
+    color: white !important;
+    height: 35px !important;
+    width: 140px !important;
+    font-weight: 1000 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none !important;
+  }
+  .anticon > svg:nth-child(1) {
+    color: white;
+    height: 10px;
+  }
+  .ant-select-selection-item {
+    font-weight: 600;
+    font-size: 0.9em;
+  }
+`;
+
+export const StyledOption = styled(Option)``;
