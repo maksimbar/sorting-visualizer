@@ -7,7 +7,7 @@ const Highlight = async ({ nodes, data, setData }) => {
   for (let i of nodes)
     if (i > 0) tempData.splice(i, 1, { color: Colors.highlight });
 
-  await Sleep(2000 / data.length).then(setData(tempData));
+  await Sleep(1000 / data.length).then(setData(tempData));
 };
 
 export default Highlight;

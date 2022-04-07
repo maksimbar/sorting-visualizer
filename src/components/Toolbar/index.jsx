@@ -8,6 +8,8 @@ import {
   Slider,
   StyledSelect,
   StyledOption,
+  Controls,
+  Link,
 } from "./styles";
 
 const Toolbar = ({
@@ -41,16 +43,25 @@ const Toolbar = ({
           disabled={sorting}
         />
       </SliderWrapper>
-      <Button onClick={() => handleShuffle()} disabled={sorting}>
-        <Icon className="fa-solid fa-arrow-rotate-right" /> Randomize
-      </Button>
-      <Button
-        onClick={() => visualizeSorting(currentAlgo)}
-        disabled={sorting || sorted}
-      >
-        <Icon className="fa-solid fa-play" />
-        Start
-      </Button>
+      <Controls>
+        <Button onClick={() => handleShuffle()} disabled={sorting}>
+          <Icon className="fa-solid fa-arrow-rotate-right" /> Shuffle
+        </Button>
+        <Button
+          onClick={() => visualizeSorting(currentAlgo)}
+          disabled={sorting || sorted}
+        >
+          <Icon className="fa-solid fa-play" />
+          Start
+        </Button>
+        <Link
+          href="https://github.com/tmneth/sorting-visualizer"
+          target="_blank"
+        >
+          <Icon className="fa-brands fa-github" />
+          GitHub
+        </Link>
+      </Controls>
     </Wrapper>
   );
 };

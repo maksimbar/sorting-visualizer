@@ -1,35 +1,39 @@
 import Highlight from "../helpers/Highlight";
+import Swap from "../helpers/Swap";
 
-const mergeSortHelper = async (data, auxData, left, right, setData) => {
-  if (right <= left) return;
-  const mid = left + Math.floor((right - left) / 2);
-  await mergeSortHelper(data, auxData, left, mid, setData);
-  await mergeSortHelper(data, auxData, mid + 1, right, setData);
-  await merge(data, auxData, left, mid, right, setData);
-};
+const mergeSort = async (l, r, setData, data) => {
+  if (l >= r) return;
 
-const merge = async (data, auxData, left, mid, right, setData) => {
-  for (let i = left; i <= right; i++) auxData[i] = data[i];
-  let i = left;
+  let mid = Math.floor((l + r) / 2);
+  await mergeSort(l, mid, setData, data);
+  await mergeSort(mid + 1, r, setData, data);
+
+  let i = l;
   let j = mid + 1;
-  for (let k = left; k <= right; k++) {
-    if (i > mid) {
-      data[k] = auxData[j++];
-    } else if (j > right) {
-      data[k] = auxData[i++];
-    } else if (auxData[j].num < auxData[i].num) {
-      data[k] = auxData[j++];
-    } else {
-      data[k] = auxData[i++];
-    }
-    await Highlight({ nodes: [k], data: data, setData: setData });
+  while (i <= mid && j <= r) {
+    await Highlight({
+      nodes: [i, mid],
+      data: data,
+      setData: setData,
+    });
+    if (data[i].num > data[j].num) {
+      let index = j;
+
+      while (index !== i) {
+        Swap(index, index - 1, data);
+        index--;
+      }
+      i++;
+      mid++;
+      j++;
+    } else i++;
+
     setData(data);
   }
 };
 
 const MergeSort = async ({ data, setData }) => {
-  const auxData = [...data];
-  await mergeSortHelper(data, auxData, 0, data.length - 1, setData);
+  await mergeSort(0, data.length - 1, setData, data);
 };
 
 export default MergeSort;

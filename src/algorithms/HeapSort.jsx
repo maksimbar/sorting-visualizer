@@ -6,13 +6,9 @@ const maxHeapify = async (data, length, i, setData) => {
   let l = 2 * i + 1;
   let r = 2 * i + 2;
 
-  if (l < length && data[l].num > data[largest].num) {
-    largest = l;
-  }
+  if (l < length && data[l].num > data[largest].num) largest = l;
 
-  if (r < length && data[r].num > data[largest].num) {
-    largest = r;
-  }
+  if (r < length && data[r].num > data[largest].num) largest = r;
 
   if (largest !== i) {
     await Highlight({

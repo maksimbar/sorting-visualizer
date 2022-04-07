@@ -18,12 +18,12 @@ const sortingAlgorithms = [
   { component: MergeSort, name: "Merge Sort" },
 ];
 
-const ArrayContainer = () => {
+const Canvas = () => {
   const [data, setData] = useState([]);
   const [currentAlgo, setCurrentAlgo] = useState(0);
   const [isSorting, setIsSorting] = useState(false);
   const [isSorted, setIsSorted] = useState(false);
-  const [dataLen, setDataLen] = useState(200);
+  const [dataLen, setDataLen] = useState(250);
 
   useEffect(() => {
     setIsSorted(false);
@@ -77,4 +77,4 @@ const ArrayContainer = () => {
   );
 };
 
-export default ArrayContainer;
+export default Canvas;

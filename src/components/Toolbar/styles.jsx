@@ -9,7 +9,7 @@ export const Button = styled.button`
   align-items: center;
   justify-content: center;
   gap: 10px;
-  min-width: 100px;
+  min-width: 75px;
   width: fit-content;
   background-color: ${Colors.alt};
   height: 35px;
@@ -48,7 +48,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Span = styled.span`
-  color: ${Colors.default};
+  color: #caedfa;
   font-size: 0.9em;
   font-weight: 600;
   letter-spacing: 0.13em;
@@ -140,3 +140,35 @@ export const StyledSelect = styled(Select)`
 `;
 
 export const StyledOption = styled(Option)``;
+
+export const Controls = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
+export const Link = styled.a`
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 75px;
+  width: fit-content;
+  background-color: ${Colors.alt};
+  height: 35px;
+  border: none;
+  padding: 10px;
+  color: ${Colors.default};
+  font-size: 0.9em;
+  font-weight: 600;
+  border-radius: 2px;
+  transition: all 0.2s ease-out;
+  &:hover {
+    opacity: 0.9;
+    color: ${Colors.default};
+  }
+  &:active {
+    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+    color: ${Colors.default};
+  }
+`;

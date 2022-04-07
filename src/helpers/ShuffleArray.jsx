@@ -16,7 +16,7 @@ const ShuffleArray = (length) => {
     };
     data.push(node);
   }
-  return data.sort((_) => 0.6 - Math.random());
+  return data.sort(() => 0.65 - Math.random());
 };
 
 export default ShuffleArray;
