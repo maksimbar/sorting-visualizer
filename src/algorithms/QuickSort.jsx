@@ -2,15 +2,15 @@ import Swap from "../helpers/Swap";
 import Highlight from "../helpers/Highlight";
 
 const partition = async (data, left, right, setData) => {
-  let pivot = data[Math.floor((right + left) / 2)].value,
+  let pivot = data[Math.floor((right + left) / 2)].num,
     i = left,
     j = right;
   while (i <= j) {
-    while (data[i].value < pivot) {
+    while (data[i].num < pivot) {
       await Highlight({ nodes: [j, i], data: data, setData: setData });
       i++;
     }
-    while (data[j].value > pivot) {
+    while (data[j].num > pivot) {
       await Highlight({ nodes: [j, i], data: data, setData: setData });
       j--;
     }

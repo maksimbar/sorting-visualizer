@@ -67,7 +67,7 @@ const ArrayContainer = () => {
           <Bar
             key={key}
             style={{
-              height: node.value + "vh",
+              height: node.num + "vh",
               backgroundColor: node.color,
             }}
           ></Bar>

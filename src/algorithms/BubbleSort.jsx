@@ -10,10 +10,9 @@ const BubbleSort = async ({ data, setData }) => {
         data: data,
         setData: setData,
       });
-      if (data[j + 1].value < data[j].value) {
+      if (data[j + 1].num < data[j].num) {
         Swap(j + 1, j, data);
       }
-
       setData(data);
     }
   }

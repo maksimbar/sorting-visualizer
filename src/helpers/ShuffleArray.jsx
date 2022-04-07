@@ -1,22 +1,22 @@
 import GenerateGradient from "./Gradient";
 
-const ShuffleArray = (dataLen) => {
-  let tempData = [];
+const ShuffleArray = (length) => {
+  let data = [];
   const gradient = GenerateGradient(
     "rgb(18, 65, 135)",
     "rgb(0,220,255)",
-    dataLen
+    length
   );
 
-  for (let i = 0; i < dataLen; ++i) {
-    let adjValue = (70 / dataLen) * i + 2;
+  for (let i = 0; i < length; ++i) {
+    let adjNum = (70 / length) * i + 1;
     let node = {
-      value: adjValue,
+      num: adjNum,
       color: `rgb(${gradient[i][0]}, ${gradient[i][1]}, ${gradient[i][2]})`,
     };
-    tempData.push(node);
+    data.push(node);
   }
-  return tempData.sort((_) => 0.6 - Math.random());
+  return data.sort((_) => 0.6 - Math.random());
 };
 
 export default ShuffleArray;

@@ -1,6 +1,6 @@
 import Canvas from "./components/Canvas";
-import styled from "styled-components";
 import Colors from "./helpers/Colors";
+import styled from "styled-components";
 
 const Backdrop = styled.div`
   background-color: ${Colors.alt};

@@ -4,9 +4,10 @@ import Sleep from "./Sleep";
 const Highlight = async ({ nodes, data, setData }) => {
   let tempData = [...data];
 
-  for (let i of nodes) tempData.splice(i, 1, { color: Colors.highlight });
+  for (let i of nodes)
+    if (i > 0) tempData.splice(i, 1, { color: Colors.highlight });
 
-  await Sleep(0).then(setData(tempData));
+  await Sleep(2000 / data.length).then(setData(tempData));
 };
 
 export default Highlight;

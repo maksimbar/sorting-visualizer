@@ -23,16 +23,15 @@ const Toolbar = ({
 }) => {
   return (
     <Wrapper>
-      <StyledSelect onChange={handleAlgo} defaultValue={algorithms[0].name}>
+      <StyledSelect onChange={handleAlgo} defaultValue={currentAlgo}>
         {algorithms.map((currentAlgo, index) => (
           <StyledOption key={index} value={index}>
             {currentAlgo.name}
           </StyledOption>
         ))}
       </StyledSelect>
-
       <SliderWrapper>
-        <Span>Change size</Span>
+        <Span>Change size & speed</Span>
         <Slider
           type="range"
           min="50"
@@ -42,11 +41,9 @@ const Toolbar = ({
           disabled={sorting}
         />
       </SliderWrapper>
-
       <Button onClick={() => handleShuffle()} disabled={sorting}>
         <Icon className="fa-solid fa-arrow-rotate-right" /> Randomize
       </Button>
-
       <Button
         onClick={() => visualizeSorting(currentAlgo)}
         disabled={sorting || sorted}

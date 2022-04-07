@@ -15,7 +15,7 @@ export const Button = styled.button`
   height: 35px;
   border: none;
   padding: 10px;
-  color: white;
+  color: ${Colors.default};
   font-size: 0.9em;
   font-weight: 600;
   border-radius: 2px;
@@ -30,6 +30,7 @@ export const Button = styled.button`
   &:disabled {
     opacity: 0.8;
     cursor: not-allowed;
+    box-shadow: none;
   }
 `;
 
@@ -40,7 +41,6 @@ export const Wrapper = styled.div`
   align-items: center;
   width: 100%;
   height: 60px;
-  display: flex;
   background-color: ${Colors.secondary};
   -webkit-box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   -moz-box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -63,7 +63,7 @@ export const SliderWrapper = styled.div`
 
 export const Slider = styled.input`
   -webkit-appearance: none;
-  margin: 5px 0;
+  margin: 4px 0;
   width: 200px;
   background-color: transparent;
   &:focus {
@@ -109,7 +109,7 @@ export const Slider = styled.input`
 `;
 
 export const Icon = styled.i`
-  color: white;
+  color: ${Colors.default};
 `;
 
 /*
@@ -119,8 +119,8 @@ since we're overriding default antd properties
 
 export const StyledSelect = styled(Select)`
   .ant-select-selector {
-    background-color: #01345b !important;
-    color: white !important;
+    background-color: ${Colors.alt} !important;
+    color: ${Colors.default} !important;
     height: 35px !important;
     width: 140px !important;
     font-weight: 1000 !important;
@@ -130,7 +130,7 @@ export const StyledSelect = styled(Select)`
     border: none !important;
   }
   .anticon > svg:nth-child(1) {
-    color: white;
+    color: ${Colors.default};
     height: 10px;
   }
   .ant-select-selection-item {
