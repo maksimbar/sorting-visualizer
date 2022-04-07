@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { BubbleSort, HeapSort, QuickSort } from "../../algorithms/index";
+import {
+  BubbleSort,
+  GnomeSort,
+  HeapSort,
+  QuickSort,
+  MergeSort,
+} from "../../algorithms/index";
 import Toolbar from "../Toolbar";
 import ShuffleArray from "../../helpers/ShuffleArray";
 import { Container, Bar, Wrapper } from "./styles";
 
 const sortingAlgorithms = [
   { component: BubbleSort, name: "Bubble Sort" },
+  { component: GnomeSort, name: "Gnome Sort" },
   { component: HeapSort, name: "Heap Sort" },
   { component: QuickSort, name: "Quick Sort" },
+  { component: MergeSort, name: "Merge Sort" },
 ];
 
 const ArrayContainer = () => {
@@ -33,7 +41,7 @@ const ArrayContainer = () => {
     setIsSorted(true);
   };
 
-  const handleLength = (onEvent) => setDataLen(onEvent.target.value);
+  const handleLength = (event) => setDataLen(event.target.value);
 
   const handleShuffle = () => {
     setIsSorted(false);
