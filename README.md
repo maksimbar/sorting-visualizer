@@ -1,8 +1,6 @@
 # Sorting visualizer on React
 
-## View project <a href="https://tmneth.github.io/sorting-visualizer/">demo</a> or access it locally
-
-<br/>
+### View project <a href="https://tmneth.github.io/sorting-visualizer/">demo</a> or access it locally
 
 ```console
 git clone https://github.com/tmneth/sorting-visualizer.git
