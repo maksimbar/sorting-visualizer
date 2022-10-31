@@ -14,11 +14,11 @@ npm run start
 
 # Features
 
-<ul>
-  <li>Control array size & visualization speed</li>
-  <li>Select one of the several sorting algorithms</li>
-  <li>View color interpolation (gradient creation) in action</li>
-</ul>
+
+- Control array size & visualization speed
+- Select one of the several sorting algorithms
+- View color interpolation (gradient creation) in action
+
 
 # Examples
 
