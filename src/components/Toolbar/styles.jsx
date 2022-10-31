@@ -112,11 +112,6 @@ export const Icon = styled.i`
   color: ${Colors.default};
 `;
 
-/*
-Certain styles are flagged as !important
-since we're overriding default antd properties
-*/
-
 export const StyledSelect = styled(Select)`
   .ant-select-selector {
     background-color: ${Colors.alt} !important;
